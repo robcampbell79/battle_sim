@@ -59,6 +59,20 @@ impl Unit {
 }
 
 pub struct Army {
+    archers: u32,
+    calvary: u32,
+    infantry: u32,
+    arquebusiers: u32,
+    cannons: u32,
+}
+
+impl Army {
+    pub fn new(arch: u32, calv: u32, inf: u32, arqu: u32, cann: u32) -> Army {
+        Army {archers: arch, calvary: calv, infantry: inf, arquebusiers: arqu, cannons: cann}
+    }
+}
+
+pub struct Army_Token {
     archers: String,
     calvary: String,
     infantry: String,
@@ -66,8 +80,8 @@ pub struct Army {
     cannons: String,
 }
 
-impl Army {
-    pub fn new(ar: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Army {
+impl Army_Token {
+    pub fn new(arch: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Army {
 
         let new_archers: String;
         let new_calvary: String;
@@ -75,7 +89,7 @@ impl Army {
         let new_arquebusiers: String;
         let new_cannons: String;
 
-        if ar > 0 {
+        if arch > 0 {
             new_archers = "A".to_string();
         } else {
             new_archers = "#".to_string();
@@ -156,5 +170,9 @@ pub fn Unit_Stats(archers: u32, calvary: u32, infantry: u32, arquebusiers: u32, 
     units.push(cannon_unit);
 
     units
+
+}
+
+pub fn turn(actions: Unit, ) {
 
 }
