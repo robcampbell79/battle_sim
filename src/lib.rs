@@ -1,3 +1,7 @@
+extern crate rand;
+
+use rand::Rng;
+
 pub struct Board {
     pub tiles: [Box<[String]>; 15],
 }
@@ -58,6 +62,7 @@ impl Unit {
     }
 }
 
+#[derive(Debug)]
 pub struct Army {
     archers: u32,
     calvary: u32,
@@ -81,7 +86,9 @@ pub struct Army_Token {
 }
 
 impl Army_Token {
-    pub fn new(arch: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Army {
+    pub fn new(arch: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Vec<String> {
+
+        let mut tokens = Vec::new();
 
         let new_archers: String;
         let new_calvary: String;
@@ -94,27 +101,43 @@ impl Army_Token {
         } else {
             new_archers = "#".to_string();
         }
+
+        tokens.push(new_archers);
+
         if calv > 0 {
             new_calvary = "$".to_string();
         } else {
             new_calvary = "#".to_string();
         }
+
+        tokens.push(new_calvary);
+
         if inf > 0 {
             new_infantry = "R".to_string();
         } else {
             new_infantry = "#".to_string();
         }
+
+        tokens.push(new_infantry);
+
         if arque > 0 {
             new_arquebusiers = "V".to_string();
         } else {
             new_arquebusiers = "#".to_string();
         }
+
+        tokens.push(new_arquebusiers);
+
         if can > 0 {
             new_cannons = "%".to_string();
         } else {
             new_cannons = "#".to_string();
         }
-        Army {archers: new_archers, calvary: new_calvary, infantry: new_infantry, arquebusiers: new_arquebusiers, cannons: new_cannons}
+
+        tokens.push(new_cannons);
+
+        tokens
+        
     }
 
     //pub fn move
@@ -173,6 +196,34 @@ pub fn Unit_Stats(archers: u32, calvary: u32, infantry: u32, arquebusiers: u32, 
 
 }
 
-pub fn turn(actions: Unit, ) {
+pub fn setup(archer: u32, calvary: u32, infantry: u32, arquebusiers: u32, cannons: u32) -> Army {
+    let arch = archer;
+    let calv = calvary;
+    let inf = infantry;
+    let arque = arquebusiers;
+    let cann = cannons;
 
+    let army = Army::new(arch, calv, inf, arque, cann);
+
+    army
 }
+
+pub fn random_setup() -> Army {
+    let archer: u32 = rand::thread_rng().gen_range(75, 501);
+    let calvary: u32 = rand::thread_rng().gen_range(75, 501);
+    let infantry: u32 = rand::thread_rng().gen_range(75, 501);
+    let arquebusiers: u32 = rand::thread_rng().gen_range(75, 501);
+    let mut cannons: u32 = rand::thread_rng().gen_range(0, 51);
+
+    if cannons < 2 {
+        cannons = 0;
+    }
+
+    let army = Army::new(archer, calvary, infantry, arquebusiers, cannons);
+    
+    army
+}
+
+// pub fn turn(actions: Unit, ) {
+
+// }
