@@ -77,72 +77,6 @@ impl Army {
     }
 }
 
-pub struct Army_Token {
-    archers: String,
-    calvary: String,
-    infantry: String,
-    arquebusiers: String,
-    cannons: String,
-}
-
-impl Army_Token {
-    pub fn new(arch: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Vec<String> {
-
-        let mut tokens = Vec::new();
-
-        let new_archers: String;
-        let new_calvary: String;
-        let new_infantry: String;
-        let new_arquebusiers: String;
-        let new_cannons: String;
-
-        if arch > 0 {
-            new_archers = "A".to_string();
-        } else {
-            new_archers = "#".to_string();
-        }
-
-        tokens.push(new_archers);
-
-        if calv > 0 {
-            new_calvary = "$".to_string();
-        } else {
-            new_calvary = "#".to_string();
-        }
-
-        tokens.push(new_calvary);
-
-        if inf > 0 {
-            new_infantry = "R".to_string();
-        } else {
-            new_infantry = "#".to_string();
-        }
-
-        tokens.push(new_infantry);
-
-        if arque > 0 {
-            new_arquebusiers = "V".to_string();
-        } else {
-            new_arquebusiers = "#".to_string();
-        }
-
-        tokens.push(new_arquebusiers);
-
-        if can > 0 {
-            new_cannons = "%".to_string();
-        } else {
-            new_cannons = "#".to_string();
-        }
-
-        tokens.push(new_cannons);
-
-        tokens
-        
-    }
-
-    //pub fn move
-}
-
 pub fn Unit_Stats(archers: u32, calvary: u32, infantry: u32, arquebusiers: u32, cannons: u32) -> Vec<Unit> {
     let mut units: Vec<Unit> = Vec::new();
 
@@ -222,6 +156,64 @@ pub fn random_setup() -> Army {
     let army = Army::new(archer, calvary, infantry, arquebusiers, cannons);
     
     army
+}
+
+pub fn army_tokens(arch: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Vec<String> {
+
+        let mut tokens = Vec::new();
+
+        let new_archers: String;
+        let new_calvary: String;
+        let new_infantry: String;
+        let new_arquebusiers: String;
+        let new_cannons: String;
+
+        if arch > 0 {
+            new_archers = "A".to_string();
+        } else {
+            new_archers = "#".to_string();
+        }
+
+        tokens.push(new_archers);
+
+        if calv > 0 {
+            new_calvary = "$".to_string();
+        } else {
+            new_calvary = "#".to_string();
+        }
+
+        tokens.push(new_calvary);
+
+        if inf > 0 {
+            new_infantry = "R".to_string();
+        } else {
+            new_infantry = "#".to_string();
+        }
+
+        tokens.push(new_infantry);
+
+        if arque > 0 {
+            new_arquebusiers = "V".to_string();
+        } else {
+            new_arquebusiers = "#".to_string();
+        }
+
+        tokens.push(new_arquebusiers);
+
+        if can > 0 {
+            new_cannons = "%".to_string();
+        } else {
+            new_cannons = "#".to_string();
+        }
+
+        tokens.push(new_cannons);
+
+        tokens
+        
+    }
+
+pub fn board_placement(board: &mut Board, army: &mut Army, row: String, column: String) {
+
 }
 
 // pub fn turn(actions: Unit, ) {
