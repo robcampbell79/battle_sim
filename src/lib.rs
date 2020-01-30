@@ -64,11 +64,11 @@ impl Unit {
 
 #[derive(Debug)]
 pub struct Army {
-    archers: u32,
-    calvary: u32,
-    infantry: u32,
-    arquebusiers: u32,
-    cannons: u32,
+    pub archers: u32,
+    pub calvary: u32,
+    pub infantry: u32,
+    pub arquebusiers: u32,
+    pub cannons: u32,
 }
 
 impl Army {
@@ -158,7 +158,7 @@ pub fn random_setup() -> Army {
     army
 }
 
-pub fn army_tokens(arch: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Vec<String> {
+pub fn army_tokens() -> Vec<String> {
 
         let mut tokens = Vec::new();
 
@@ -168,43 +168,23 @@ pub fn army_tokens(arch: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Vec<
         let new_arquebusiers: String;
         let new_cannons: String;
 
-        if arch > 0 {
-            new_archers = "A".to_string();
-        } else {
-            new_archers = "#".to_string();
-        }
+        new_archers = "A".to_string();
 
         tokens.push(new_archers);
 
-        if calv > 0 {
-            new_calvary = "$".to_string();
-        } else {
-            new_calvary = "#".to_string();
-        }
+        new_calvary = "$".to_string();
 
         tokens.push(new_calvary);
 
-        if inf > 0 {
-            new_infantry = "R".to_string();
-        } else {
-            new_infantry = "#".to_string();
-        }
+        new_infantry = "R".to_string();
 
         tokens.push(new_infantry);
 
-        if arque > 0 {
-            new_arquebusiers = "V".to_string();
-        } else {
-            new_arquebusiers = "#".to_string();
-        }
+        new_arquebusiers = "V".to_string();
 
         tokens.push(new_arquebusiers);
 
-        if can > 0 {
-            new_cannons = "%".to_string();
-        } else {
-            new_cannons = "#".to_string();
-        }
+        new_cannons = "%".to_string();
 
         tokens.push(new_cannons);
 
@@ -212,8 +192,78 @@ pub fn army_tokens(arch: u32, calv: u32, inf: u32, arque: u32, can: u32) -> Vec<
         
     }
 
-pub fn board_placement(board: &mut Board, army: &mut Army, row: String, column: String) {
+pub fn board_placement(board: &mut Board, army: String, row: String, column: String) {
 
+    let tokens = army_tokens();
+
+    let r: usize;
+
+    let a = String::from("a");
+    let b = String::from("b");
+    let c = String::from("c");
+    let d = String::from("d");
+    let e = String::from("e");
+    let f = String::from("f");
+    let g = String::from("g");
+    let h = String::from("h");
+    let i = String::from("i");
+    let j = String::from("j");
+    let k = String::from("k");
+    let l = String::from("l");
+    let m = String::from("m");
+    let n = String::from("n");
+    let o = String::from("o");
+
+    match row {
+        a => r = 0,
+        b => r = 1,
+        c => r = 2,
+        d => r = 3,
+        e => r = 4,
+        f => r = 5,
+        g => r = 6,
+        h => r = 7,
+        i => r = 8,
+        j => r = 9,
+        k => r = 10,
+        l => r = 11,
+        m => r = 12,
+        n => r = 13,
+        o => r = 14,
+        _ => r = 15,
+    }
+
+    let c = column;
+
+    let mut c: usize = match c.trim().parse() {
+            Ok(num) => num,
+            Err(_) => 0,
+    };
+
+    if c < 11 && c > 0 {
+        c += 1;
+    } else {
+        println!("Invalid column.");
+    }
+
+    if army == "archers" {
+        board.tiles[r][c] = tokens[4].to_string();
+    } 
+    else if army == "calvary" {
+        board.tiles[r][c] = tokens[3].to_string();
+    } 
+    else if army == "infantry" {
+        board.tiles[r][c] = tokens[2].to_string();
+    } 
+    else if army == "arquebusiers" {
+        board.tiles[r][c] = tokens[1].to_string();
+    } 
+    else if army == "cannons" {
+        board.tiles[r][c] = tokens[0].to_string();
+    } 
+    else {
+        println!("Invalid input.");
+    }
 }
 
 // pub fn turn(actions: Unit, ) {

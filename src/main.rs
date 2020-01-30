@@ -1,7 +1,9 @@
 use battle_sim::Board;
+use battle_sim::Army;
 use std::io;
 use battle_sim::random_setup;
 use battle_sim::setup;
+use battle_sim::board_placement;
 
 fn main() {
 
@@ -13,8 +15,15 @@ fn main() {
     let mut arque: String;
     let mut cann: String;
     let mut error: u32 = 0;
+    let mut col: String;
+    let mut row: String;
 
     let mut board = Board::new();
+    let mut army: Army;
+
+    army = setup(0, 0, 0, 0, 0);
+    col = "0".to_string();
+    row = "a".to_string();
 
     board.show_board();
 
@@ -31,7 +40,7 @@ fn main() {
     }
 
     if random == true {
-        let army = random_setup();
+        army = random_setup();
         println!("Your generated army: {:?}", army);
     } else {
         println!("Please enter number of archers, not to exceed 500:");
@@ -120,10 +129,27 @@ fn main() {
         }
 
         if error < 1 {
-            let army = setup(arc, calv, inf, arque, cann);
+            army = setup(arc, calv, inf, arque, cann);
             println!("Your army: {:?}", army);
         } else {
             println!("Sorry, but there were errors.");
         }
     }
+
+    println!("Time to place your army, column is 1-10 and row is a-o.");
+    
+    if army.archers > 0 {
+        println!("Where do you want to place your archers?");
+        println!("Column 1-10");
+
+        io::stdin().read_line(&mut col).expect("Invalid input.");
+
+        println!("Row a-o");
+
+        io::stdin().read_line(&mut row).expect("Invalid input.");
+
+        board_placement(&mut board, "archers".to_string(), col, row);
+    }
+
+    board.show_board();
 }
