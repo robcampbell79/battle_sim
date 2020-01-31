@@ -15,15 +15,13 @@ fn main() {
     let mut arque: String;
     let mut cann: String;
     let mut error: u32 = 0;
-    let mut col: String;
-    let mut row: String;
+    let mut col = String::new();
+    let mut row = String::new();
 
     let mut board = Board::new();
     let mut army: Army;
 
     army = setup(0, 0, 0, 0, 0);
-    col = "0".to_string();
-    row = "a".to_string();
 
     board.show_board();
 
@@ -140,15 +138,89 @@ fn main() {
     
     if army.archers > 0 {
         println!("Where do you want to place your archers?");
-        println!("Column 1-10");
-
-        io::stdin().read_line(&mut col).expect("Invalid input.");
-
         println!("Row a-o");
 
         io::stdin().read_line(&mut row).expect("Invalid input.");
 
-        board_placement(&mut board, "archers".to_string(), col, row);
+        println!("Column 1-10");
+
+        io::stdin().read_line(&mut col).expect("Invalid input.");
+
+        board_placement(&mut board, "archers".to_string(), &mut row, &mut col);
+
+        board.show_board();
+    }
+
+    if army.calvary > 0 {
+        row = String::new();
+        col = String::new();
+
+        println!("Where do you want to place your calvary?");
+        println!("Row a-o");
+
+        io::stdin().read_line(&mut row).expect("Invalid input.");
+
+        println!("Column 1-10");
+
+        io::stdin().read_line(&mut col).expect("Invalid input.");
+
+        board_placement(&mut board, "calvary".to_string(), &mut row, &mut col);
+
+        board.show_board();
+    }
+
+    if army.infantry > 0 {
+        row = String::new();
+        col = String::new();
+        
+        println!("Where do you want to place your infantry?");
+        println!("Row a-o");
+
+        io::stdin().read_line(&mut row).expect("Invalid input.");
+
+        println!("Column 1-10");
+
+        io::stdin().read_line(&mut col).expect("Invalid input.");
+
+        board_placement(&mut board, "infantry".to_string(), &mut row, &mut col);
+
+        board.show_board();
+    }
+
+    if army.arquebusiers > 0 {
+        row = String::new();
+        col = String::new();
+
+        println!("Where do you want to place your arquebusiers?");
+        println!("Row a-o");
+
+        io::stdin().read_line(&mut row).expect("Invalid input.");
+
+        println!("Column 1-10");
+
+        io::stdin().read_line(&mut col).expect("Invalid input.");
+
+        board_placement(&mut board, "arquebusiers".to_string(), &mut row, &mut col);
+
+        board.show_board();
+    }
+
+    if army.cannons > 0 {
+        row = String::new();
+        col = String::new();
+        
+        println!("Where do you want to place your cannons?");
+        println!("Row a-o");
+
+        io::stdin().read_line(&mut row).expect("Invalid input.");
+
+        println!("Column 1-10");
+
+        io::stdin().read_line(&mut col).expect("Invalid input.");
+
+        board_placement(&mut board, "cannons".to_string(), &mut row, &mut col);
+
+        board.show_board();
     }
 
     board.show_board();

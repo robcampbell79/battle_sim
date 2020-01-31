@@ -192,74 +192,79 @@ pub fn army_tokens() -> Vec<String> {
         
     }
 
-pub fn board_placement(board: &mut Board, army: String, row: String, column: String) {
+pub fn board_placement(board: &mut Board, army: String, row: &str, column: &str) {
+
+    println!("r: {}, c: {}", row, column);
 
     let tokens = army_tokens();
 
+    let row_num = row.trim();
     let r: usize;
 
-    let a = String::from("a");
-    let b = String::from("b");
-    let c = String::from("c");
-    let d = String::from("d");
-    let e = String::from("e");
-    let f = String::from("f");
-    let g = String::from("g");
-    let h = String::from("h");
-    let i = String::from("i");
-    let j = String::from("j");
-    let k = String::from("k");
-    let l = String::from("l");
-    let m = String::from("m");
-    let n = String::from("n");
-    let o = String::from("o");
-
-    match row {
-        a => r = 0,
-        b => r = 1,
-        c => r = 2,
-        d => r = 3,
-        e => r = 4,
-        f => r = 5,
-        g => r = 6,
-        h => r = 7,
-        i => r = 8,
-        j => r = 9,
-        k => r = 10,
-        l => r = 11,
-        m => r = 12,
-        n => r = 13,
-        o => r = 14,
+    match row_num {
+        "a" => r = 0,
+        "b" => r = 1,
+        "c" => r = 2,
+        "d" => r = 3,
+        "e" => r = 4,
+        "f" => r = 5,
+        "g" => r = 6,
+        "h" => r = 7,
+        "i" => r = 8,
+        "j" => r = 9,
+        "k" => r = 10,
+        "l" => r = 11,
+        "m" => r = 12,
+        "n" => r = 13,
+        "o" => r = 14,
         _ => r = 15,
     }
 
-    let c = column;
-
-    let mut c: usize = match c.trim().parse() {
-            Ok(num) => num,
-            Err(_) => 0,
+    let mut c: usize = match column.trim().parse() {
+            Ok(usize) => usize,
+            Err(_) => 12,
     };
 
     if c < 11 && c > 0 {
-        c += 1;
+        c -= 1;
     } else {
         println!("Invalid column.");
     }
 
     if army == "archers" {
-        board.tiles[r][c] = tokens[4].to_string();
+        if board.tiles[r][c] != "#" {
+            println!("This space is already occupied by an unit.");
+        } else {
+            board.tiles[r][c] = tokens[0].to_string();
+        }
     } 
     else if army == "calvary" {
-        board.tiles[r][c] = tokens[3].to_string();
+        if board.tiles[r][c] != "#" {
+            println!("This space is already occupied by an unit.");
+        } else {
+            board.tiles[r][c] = tokens[1].to_string();
+        }
     } 
     else if army == "infantry" {
-        board.tiles[r][c] = tokens[2].to_string();
+        if board.tiles[r][c] != "#" {
+            println!("This space is already occupied by an unit.");
+        } else {
+            board.tiles[r][c] = tokens[2].to_string();
+        }
     } 
     else if army == "arquebusiers" {
-        board.tiles[r][c] = tokens[1].to_string();
+        if board.tiles[r][c] != "#" {
+            println!("This space is already occupied by an unit.");
+        } else {
+            board.tiles[r][c] = tokens[3].to_string();
+        }
     } 
     else if army == "cannons" {
-        board.tiles[r][c] = tokens[0].to_string();
+        if board.tiles[r][c] != "#" {
+            println!("This space is already occupied by an unit.");
+        } else {
+            board.tiles[r][c] = tokens[4].to_string();
+        }
     } 
     else {
         println!("Invalid input.");
