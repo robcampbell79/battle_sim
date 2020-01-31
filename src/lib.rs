@@ -143,10 +143,10 @@ pub fn setup(archer: u32, calvary: u32, infantry: u32, arquebusiers: u32, cannon
 }
 
 pub fn random_setup() -> Army {
-    let archer: u32 = rand::thread_rng().gen_range(75, 501);
-    let calvary: u32 = rand::thread_rng().gen_range(75, 501);
-    let infantry: u32 = rand::thread_rng().gen_range(75, 501);
-    let arquebusiers: u32 = rand::thread_rng().gen_range(75, 501);
+    let archer: u32 = rand::thread_rng().gen_range(100, 501);
+    let calvary: u32 = rand::thread_rng().gen_range(100, 501);
+    let infantry: u32 = rand::thread_rng().gen_range(100, 501);
+    let arquebusiers: u32 = rand::thread_rng().gen_range(100, 501);
     let mut cannons: u32 = rand::thread_rng().gen_range(0, 51);
 
     if cannons < 2 {
@@ -192,7 +192,7 @@ pub fn army_tokens() -> Vec<String> {
         
     }
 
-pub fn board_placement(board: &mut Board, army: String, row: &str, column: &str) {
+pub fn board_placement(board: &mut Board, army: String, units: u32 row: &str, column: &str) {
 
     println!("r: {}, c: {}", row, column);
 

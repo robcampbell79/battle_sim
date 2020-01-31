@@ -146,7 +146,7 @@ fn main() {
 
         io::stdin().read_line(&mut col).expect("Invalid input.");
 
-        board_placement(&mut board, "archers".to_string(), &mut row, &mut col);
+        board_placement(&mut board, "archers".to_string(), 1, &mut row, &mut col);
 
         board.show_board();
     }
@@ -164,7 +164,7 @@ fn main() {
 
         io::stdin().read_line(&mut col).expect("Invalid input.");
 
-        board_placement(&mut board, "calvary".to_string(), &mut row, &mut col);
+        board_placement(&mut board, "calvary".to_string(), 1, &mut row, &mut col);
 
         board.show_board();
     }
@@ -182,7 +182,7 @@ fn main() {
 
         io::stdin().read_line(&mut col).expect("Invalid input.");
 
-        board_placement(&mut board, "infantry".to_string(), &mut row, &mut col);
+        board_placement(&mut board, "infantry".to_string(), 1, &mut row, &mut col);
 
         board.show_board();
     }
@@ -200,7 +200,7 @@ fn main() {
 
         io::stdin().read_line(&mut col).expect("Invalid input.");
 
-        board_placement(&mut board, "arquebusiers".to_string(), &mut row, &mut col);
+        board_placement(&mut board, "arquebusiers".to_string(), 1, &mut row, &mut col);
 
         board.show_board();
     }
@@ -218,7 +218,7 @@ fn main() {
 
         io::stdin().read_line(&mut col).expect("Invalid input.");
 
-        board_placement(&mut board, "cannons".to_string(), &mut row, &mut col);
+        board_placement(&mut board, "cannons".to_string(), 1, &mut row, &mut col);
 
         board.show_board();
     }
