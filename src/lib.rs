@@ -158,6 +158,20 @@ pub fn random_setup() -> Army {
     army
 }
 
+pub fn random_companies(army: u32) -> Vec<u32> {
+    let companies = Vec::new();
+
+    let divisor = army + 1;
+
+    let company: u32 = rand::thread_rng().gen_range(1, divisor);
+
+    while company > 0 {
+        // need to push in companies that are divided by company
+    }
+
+
+}
+
 pub fn army_tokens() -> Vec<String> {
 
         let mut tokens = Vec::new();
@@ -192,7 +206,7 @@ pub fn army_tokens() -> Vec<String> {
         
     }
 
-pub fn board_placement(board: &mut Board, army: String, units: u32 row: &str, column: &str) {
+pub fn board_placement(board: &mut Board, army: String, companies: u32 row: &str, column: &str) {
 
     println!("r: {}, c: {}", row, column);
 
