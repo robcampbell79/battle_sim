@@ -158,19 +158,31 @@ pub fn random_setup() -> Army {
     army
 }
 
-// pub fn random_companies(army: u32) -> Vec<u32> {
-//     let companies = Vec::new();
+pub fn auto_companies(unit: u32) -> Vec<u32> {
+    let companies = Vec::new();
 
-//     let divisor = army + 1;
+    let divisor = 100;
 
-//     let company: u32 = rand::thread_rng().gen_range(1, divisor);
+    let company: u32 = unit / 100;
 
-//     while company > 0 {
-//         // need to push in companies that are divided by company
-//     }
+    let extra = unit % 100;
 
+    companies.push(company);
 
-// }
+    while company > 0 {
+
+        if company == 1 {
+            extra += 100;
+            companies.push(extra);
+        } else {
+            companies.push(100);
+        }
+
+    }
+
+    companies
+
+}
 
 pub fn army_tokens() -> Vec<String> {
 
