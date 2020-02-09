@@ -158,27 +158,53 @@ pub fn random_setup() -> Army {
     army
 }
 
-pub fn auto_companies(unit: u32) -> Vec<u32> {
-    let companies = Vec::new();
+pub fn auto_companies(unit: String, amount: u32) -> Vec<u32> {
+    let mut companies = Vec::new();
 
-    let divisor = 100;
+    let divisor: u32;
 
-    let company: u32 = unit / 100;
+    if unit == "cannons" {
+        
+        divisor = 10;
 
-    let extra = unit % 100;
+        let company: u32 = amount / divisor;
 
-    companies.push(company);
+        let mut extra = amount % divisor;
 
-    while company > 0 {
+        companies.push(company);
 
-        if company == 1 {
-            extra += 100;
-            companies.push(extra);
-        } else {
-            companies.push(100);
+        while company > 0 {
+
+            if company == 1 {
+                extra += 10;
+                companies.push(extra);
+            } else {
+                companies.push(10);
+            }
+
         }
+    } else {
 
+        divisor = 100;
+
+        let company: u32 = amount / divisor;
+    
+        let mut extra = amount % divisor;
+    
+        companies.push(company);
+    
+        while company > 0 {
+    
+            if company == 1 {
+                extra += 100;
+                companies.push(extra);
+            } else {
+                companies.push(100);
+            }
+    
+        }
     }
+
 
     companies
 
