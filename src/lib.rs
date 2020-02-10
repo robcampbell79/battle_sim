@@ -219,7 +219,7 @@ pub fn manual_companies(unit: String, amount: u32, divisor: u32) -> Vec<u32> {
 
     } else {
 
-        if amount < divisor {
+        if divisor < amount {
 
             if unit == "cannons" {
         
@@ -259,7 +259,7 @@ pub fn manual_companies(unit: String, amount: u32, divisor: u32) -> Vec<u32> {
                 }
             }
         } else {
-            
+
             panic!("The divisor must be less than the amount of soldiers in your unit.");
         }
 
