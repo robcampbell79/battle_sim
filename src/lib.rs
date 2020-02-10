@@ -210,6 +210,67 @@ pub fn auto_companies(unit: String, amount: u32) -> Vec<u32> {
 
 }
 
+pub fn manual_companies(unit: String, amount: u32, divisor: u32) -> Vec<u32> {
+    let mut companies = Vec::new();
+
+    if divisor % 10 != 0 {
+
+        panic!("The divisor must be divisible by 10.");
+
+    } else {
+
+        if amount < divisor {
+
+            if unit == "cannons" {
+        
+                let company: u32 = amount / divisor;
+        
+                let mut extra = amount % divisor;
+        
+                companies.push(company);
+        
+                while company > 0 {
+        
+                    if company == 1 {
+                        extra += 10;
+                        companies.push(extra);
+                    } else {
+                        companies.push(10);
+                    }
+        
+                }
+            } else {
+        
+                let company: u32 = amount / divisor;
+            
+                let mut extra = amount % divisor;
+            
+                companies.push(company);
+            
+                while company > 0 {
+            
+                    if company == 1 {
+                        extra += 100;
+                        companies.push(extra);
+                    } else {
+                        companies.push(100);
+                    }
+            
+                }
+            }
+        } else {
+            
+            panic!("The divisor must be less than the amount of soldiers in your unit.");
+        }
+
+    }
+
+
+
+    companies
+
+}
+
 pub fn army_tokens() -> Vec<String> {
 
         let mut tokens = Vec::new();
