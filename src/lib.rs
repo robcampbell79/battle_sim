@@ -130,6 +130,8 @@ pub fn Unit_Stats(archers: u32, calvary: u32, infantry: u32, arquebusiers: u32, 
 
 }
 
+//Just a random message
+
 pub fn setup(archer: u32, calvary: u32, infantry: u32, arquebusiers: u32, cannons: u32) -> Army {
     let arch = archer;
     let calv = calvary;
